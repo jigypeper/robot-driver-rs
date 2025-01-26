@@ -4,7 +4,13 @@ pub enum State {
     Ready,
     InProgress,
     Complete,
-    Error, // need an error enum here
+    RobotError(RobotError),
+}
+
+pub enum RobotError {
+    PickError,
+    PlaceError,
+    UknownError,
 }
 
 pub struct Robot {
