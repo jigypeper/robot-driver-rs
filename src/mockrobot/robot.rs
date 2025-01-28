@@ -39,4 +39,8 @@ impl Robot {
     pub fn place(&mut self, location: Location) -> Self {
         todo!();
     }
+
+    pub fn simulate(&mut self) -> Self {
+        todo!();
+    }
 }
