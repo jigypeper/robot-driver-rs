@@ -1,4 +1,5 @@
 use uuid::Uuid;
+use thiserror::Error
 
 pub enum State {
     Ready,
@@ -7,9 +8,13 @@ pub enum State {
     RobotError(RobotError),
 }
 
+#[derive(Debug, Error)]
 pub enum RobotError {
+    #[error("Unable to pick")]
     PickError,
+    #[error("Unable to place")]
     PlaceError,
+    #[error("Unknown error occured")]
     UknownError,
 }
 
