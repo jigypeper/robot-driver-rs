@@ -35,13 +35,17 @@ impl Robot {
         }
     }
 
-    pub fn home(&mut self) -> Self {
+    pub fn home(&mut self) -> Result<Self, RobotError> {
         todo!();
     }
-    pub fn pick(&mut self, location: Location) -> Self {
+    pub fn pick(&mut self, location: Location) -> Result<Self, RobotError> {
         todo!();
     }
-    pub fn place(&mut self, location: Location) -> Self {
+    pub fn place(&mut self, location: Location) -> Result<Self, RobotError> {
+        todo!();
+    }
+
+    pub fn disconnect(&mut self) -> Result<(), RobotError>{
         todo!();
     }
 
