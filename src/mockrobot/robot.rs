@@ -1,5 +1,6 @@
 use uuid::Uuid;
 use thiserror::Error
+use rand::prelude::*;
 
 pub enum State {
     Ready,
@@ -49,7 +50,16 @@ impl Robot {
         todo!();
     }
 
-    pub fn simulate(&mut self) -> Self {
-        todo!();
+    pub fn simulate(&mut self) -> &mut Self {
+        // TODO: need to think of how to simulate state
+        let number = rand::random_range(1..=4);
+        match number {
+            1 => self.state = State::Ready,
+            2 => self.state = State::InProgress,
+            3 => self.state = State::Complete,
+            _ => self.state = State::RobotError(RobotError::UknownError),
+        }
+
+        self
     }
 }
