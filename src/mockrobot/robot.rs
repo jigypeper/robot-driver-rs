@@ -52,6 +52,6 @@ impl Robot {
 
     fn simulate_error(&mut self) -> &mut Self {
         // TODO: need to think of how to simulate errors
-        todo!()
+        todo!();
     }
 }
