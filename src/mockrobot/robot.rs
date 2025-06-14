@@ -9,6 +9,13 @@ pub enum State {
     RobotError(RobotError),
 }
 
+pub enum Action {
+    Idle,
+    Picking,
+    Placing,
+    Home,
+}
+
 #[derive(Debug, Error)]
 pub enum RobotError {
     #[error("Unable to pick")]
@@ -23,6 +30,7 @@ pub struct Robot {
     pub id: String,
     pub state: State,
     pub location: Location,
+    pub action: Action,
 }
 
 pub struct Location(i32, i32, i32);
@@ -33,6 +41,7 @@ impl Robot {
             id: Uuid::new_v4().to_string(),
             state: State::Ready,
             location: Location(0, 0, 0),
+            action: Action::Home,
         }
     }
 
