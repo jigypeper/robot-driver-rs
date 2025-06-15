@@ -1,6 +1,6 @@
 use uuid::Uuid;
 use thiserror::Error
-use rand::prelude::*;
+use rand::{prelude::*, random};
 
 pub enum State {
     Ready,
@@ -13,7 +13,7 @@ pub enum Action {
     Idle,
     Picking,
     Placing,
-    Home,
+    GoingHome,
 }
 
 #[derive(Debug, Error)]
@@ -41,7 +41,7 @@ impl Robot {
             id: Uuid::new_v4().to_string(),
             state: State::Ready,
             location: Location(0, 0, 0),
-            action: Action::Home,
+            action: Action::Idle,
         }
     }
 
@@ -61,6 +61,31 @@ impl Robot {
 
     fn simulate_error(&mut self) -> &mut Self {
         // TODO: need to think of how to simulate errors
-        todo!();
+        let random_number: u32 = random();
+        match self.action {
+            Action::Idle => self.state = State::Ready,
+            Action::Picking => {
+                if random_number % 5 == 0 {
+                    self.state = State::Complete;
+                } else {
+                    self.state = State::RobotError(RobotError::PickError);
+                }
+            },
+            Action::Placing => {
+                if random_number % 3 == 0 {
+                    self.state = State::Complete;
+                } else {
+                    self.state = State::RobotError(RobotError::PlaceError);
+                }
+            },
+            Action::GoingHome => {
+                if random_number % 2 == 0 {
+                    self.state = State::Complete;
+                } else {
+                    self.state = State::RobotError(RobotError::UknownError);
+                }
+            },
+        }
+        self
     }
 }
