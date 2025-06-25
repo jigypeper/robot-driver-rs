@@ -1,6 +1,6 @@
+use rand::random;
+use thiserror::Error;
 use uuid::Uuid;
-use thiserror::Error
-use rand::{prelude::*, random};
 
 pub enum State {
     Ready,
@@ -55,7 +55,7 @@ impl Robot {
         todo!();
     }
 
-    pub fn disconnect(&mut self) -> Result<(), RobotError>{
+    pub fn disconnect(&mut self) -> Result<(), RobotError> {
         todo!();
     }
 
@@ -70,21 +70,21 @@ impl Robot {
                 } else {
                     self.state = State::RobotError(RobotError::PickError);
                 }
-            },
+            }
             Action::Placing => {
                 if random_number % 3 == 0 {
                     self.state = State::Complete;
                 } else {
                     self.state = State::RobotError(RobotError::PlaceError);
                 }
-            },
+            }
             Action::GoingHome => {
                 if random_number % 2 == 0 {
                     self.state = State::Complete;
                 } else {
                     self.state = State::RobotError(RobotError::UknownError);
                 }
-            },
+            }
         }
         self
     }
