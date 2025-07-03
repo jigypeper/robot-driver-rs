@@ -33,7 +33,7 @@ pub struct Robot {
     pub action: Action,
 }
 
-pub struct Location(i32, i32, i32);
+pub struct Location(pub i32, pub i32, pub i32);
 
 impl Robot {
     pub fn new() -> Self {
