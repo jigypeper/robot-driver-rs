@@ -45,8 +45,12 @@ impl Robot {
         }
     }
 
-    pub fn home(&mut self) -> Result<Self, RobotError> {
-        todo!();
+    pub fn home(mut self) -> Result<Self, RobotError> {
+        self.simulate();
+        match self.state {
+            State::RobotError(err) => Err(err)
+            _ => Ok(self)
+        }
     }
     pub fn pick(&mut self, location: Location) -> Result<Self, RobotError> {
         todo!();
@@ -59,7 +63,7 @@ impl Robot {
         todo!();
     }
 
-    fn simulate_error(&mut self) -> &mut Self {
+    fn simulate(&mut self) -> &mut Self {
         // TODO: need to think of how to simulate errors
         let random_number: u32 = random();
         match self.action {
