@@ -53,13 +53,22 @@ impl Robot {
         }
     }
     pub fn pick(&mut self, location: Location) -> Result<Self, RobotError> {
-        todo!();
+        self.simulate();
+        match self.state {
+            State::RobotError(err) => Err(err)
+            _ => Ok(self)
+        }
     }
     pub fn place(&mut self, location: Location) -> Result<Self, RobotError> {
-        todo!();
+        self.simulate();
+        match self.state {
+            State::RobotError(err) => Err(err)
+            _ => Ok(self)
+        }
     }
 
     pub fn disconnect(&mut self) -> Result<(), RobotError> {
+        // TODO: Either add a disconnect state or delete the robot?
         todo!();
     }
 
